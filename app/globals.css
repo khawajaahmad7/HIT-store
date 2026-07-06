@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-maroon: 123 30 58;
+  --color-saffron: 224 165 38;
+  --color-teal: 15 110 110;
+  --color-ivory: 251 246 238;
+  --color-ink: 14 14 14;
+  --paper: #F5F0E6;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-feature-settings: "ss01", "cv01", "cv11";
+  text-rendering: optimizeLegibility;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* Custom cursor style */
+@media (pointer: fine) {
+  .cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #0E0E0E;
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+  }
+  .cursor-ring {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(14, 14, 14, 0.2);
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9998;
+    transition: width 0.2s, height 0.2s, border-color 0.2s;
+  }
+}
+
+/* Hero animated gradient */
+.hero-gradient {
+  background: linear-gradient(135deg, #7b1e3a 0%, #e0a526 25%, #0f6e6e 60%, #7b1e3a 100%);
+  background-size: 300% 300%;
+  animation: gradient-shift 14s ease infinite;
+}
+
+/* Slow zoom for hero / editorial background images */
+@keyframes hero-zoom {
+  0%   { transform: scale(1.0); }
+  100% { transform: scale(1.08); }
+}
+.hero-img-zoom {
+  animation: hero-zoom 18s ease-out forwards;
+}
+
+/* Smooth image load fade-in */
+@keyframes img-fade-in {
+  0%   { opacity: 0; transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1.0); }
+}
+.img-fade-in {
+  animation: img-fade-in 0.8s ease-out forwards;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Subtle noise texture for editorial feel */
+.noise-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+}
+
+/* Reusable product card hover */
+.product-card {
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px -20px rgba(123, 30, 58, 0.25);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fbf6ee;
+}
+::-webkit-scrollbar-thumb {
+  background: #7b1e3a;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #501224;
+}
+
+/* Underline link */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.4s ease;
+}
+.link-underline:hover {
+  background-size: 100% 1px;
+}
+
+/* Brand button */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-maroon px-6 py-3 font-medium text-ivory transition-all hover:bg-maroon-600 hover:shadow-lg active:scale-[0.98];
+}
+.btn-gold {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-saffron px-6 py-3 font-medium text-ink transition-all hover:bg-saffron-400 hover:shadow-lg active:scale-[0.98];
+}
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink px-6 py-3 font-medium text-ink transition-all hover:bg-ink hover:text-ivory active:scale-[0.98];
+}

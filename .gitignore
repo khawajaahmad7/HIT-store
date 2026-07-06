@@ -1,0 +1,19 @@
+# Build artifacts
+.next/
+out/
+node_modules/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+.vercel
+.env*
